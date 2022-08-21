@@ -4,7 +4,7 @@ on:
     inputs:
       Mode:
         type: choice
-        description: Zone in which the VM is in
+        description: VM 
         required: true
         options:
         - all
@@ -12,7 +12,7 @@ on:
         - single
       Zone:
         type: choice
-        description: Zone in which the VM is in
+        description: Region in which the VM is in
         required: true
         options:
         - us-central1-a
@@ -20,7 +20,7 @@ on:
         - us-central1-c
       Actions:
         type: choice
-        description: Zone in which the VM is in
+        description: Action that is to be taken
         required: true
         options:
         - start
