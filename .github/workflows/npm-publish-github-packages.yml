@@ -1,0 +1,51 @@
+name: Node.js CI
+on:
+  workflow_dispatch:
+    inputs:
+      Mode:
+        type: choice
+        description: Zone in which the VM is in
+        required: true
+        options:
+        - all
+        - zone
+        - single
+      Zone:
+        type: choice
+        description: Zone in which the VM is in
+        required: true
+        options:
+        - us-central1-a
+        - us-central1-b
+        - us-central1-c
+      Actions:
+        type: choice
+        description: Zone in which the VM is in
+        required: true
+        options:
+        - start
+        - stop
+      Name: 
+        description: please write the name of the machine you want to operate the action on
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: 'Install dependencies'
+
+      run: |
+            cd gcloud
+            npm install
+    - name: 'Start Machine'
+      run: |
+            cd gcloud
+            node instances.js --action ${{ github.event.inputs.Actions }} --zone ${{ github.event.inputs.Zone }} --mode ${{ github.event.inputs.Mode }} --name ${{ github.event.inputs.Name }}
