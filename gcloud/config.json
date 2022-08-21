@@ -1,0 +1,5 @@
+{
+    "PAT": "<enter the PAT token from github>",
+    "baseUrl": "https://api.github.com",
+    "projectId": "hsp-sre-research-cug01-prep"
+}
